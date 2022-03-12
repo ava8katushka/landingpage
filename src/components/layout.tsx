@@ -5,7 +5,8 @@ import {
   heading,
   navLinks,
   navLinkItem,
-  navLinkText } from './layout.module.css'
+  navLinkText 
+} from './layout.module.css'
 
 type LayoutEl = {
     pageTitle: string,
