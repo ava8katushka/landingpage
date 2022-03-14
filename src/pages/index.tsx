@@ -4,11 +4,11 @@ import { StaticImage } from 'gatsby-plugin-image'
 
 const IndexPage = () => {
   return (
-    <Layout pageTitle="Ava's blog">
-      <p>Fuck you, bitches!!!</p>
+    <Layout pageTitle="Algorithms Book">
+      <p>Here's a sample</p>
       <StaticImage
-        alt="Fuck the reality"
-        src="https://images.unsplash.com/photo-1582324597727-186650f42085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+        alt="Time and Space complexity of Algorithms"
+        src="https://res.cloudinary.com/ava-coding-com/image/upload/v1647240152/Algorithms%20Book/1st_opening_ooh6yr.png"
       />
     </Layout>
   )
