@@ -1,0 +1,56 @@
+---
+title: "Largest Rectangle in Histogram"
+description: "📊 Monotonique Stack Solution Intuition (Javascript)"
+---
+
+Oh, **hard problem** it is, isn't it? 
+Let's develop some intuition on how to access it.
+
+## Increasing 
+When the heights are **increasing**, we can always build rectangle from a point there a previous height started, to the current point. 
+![image](https://assets.leetcode.com/users/images/5b931e15-5391-4cd5-bed3-a894533829e1_1630144379.5151935.jpeg)
+E.g we have heights [1, 2, 5]. In point 2 we can build rectangle of the height 1. In the point 5 we can build rectangle of height 2, starting from index 1, or height 1, starting from index 0. 
+
+Let's put the height, and the index, from where it's possible to build rectangle of this height, into a stack. 
+	```javascript
+	stack.push([index, height])
+	```
+## Decreasing 
+When the height is **decreasing**, we couldn't build rectangle of any previous height, heigher than the current one. So it's the place to make evaluation. 
+![image](https://assets.leetcode.com/users/images/f6fbe0c0-d0b3-42ae-9965-9f6a351512b8_1630145345.9980621.jpeg)
+
+
+We'll pop all the heights bigger than the current one from the stack, and estimate the rectangles which could be build to this point:
+```javascript
+while (stack.length && stack[stack.length - 1][1] > heights[i]) {
+                let [pos, height] = stack.pop();
+                res = Math.max(res, (i - pos) * height);
+	}
+```
+## What to put in the stack?
+It's seems like we put in the stack the current index we are processing? 
+Almost. 
+But when we pop up all the heights which are bigger than the current one, guess where current height could start? From any of this points. 
+Imagine we have array [1, 3, 5, 2]. At the height of 2 we pop up 5 and 3, but rectangle of the height 2 can start from index 1, not from index 3!
+So, we put in the stack the **earliest point, from there this height could start**. Which is either current index, or the last height poped from the stack. 
+## Append 0 to heights
+To make sure we processed all the heights, we can add additinal while statement in the end, or do more elegant solution - append 0 to the end of heights.
+
+## Full code
+```javascript
+heights.push(0)  
+let stack = [];
+let res = 0;
+for (let i = 0; i < heights.length; i++) {
+	let heightStart = i;
+	while (stack.length && stack[stack.length - 1][1] > heights[i]) {
+			let [pos, height] = stack.pop();
+			res = Math.max(res, (i - pos) * height);
+			heightStart = pos; 
+		}
+	stack.push([heightStart, heights[i]]);
+}
+return res;
+```
+
+
