@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import { StaticImage } from 'gatsby-plugin-image'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 type FilesMdxData = {
@@ -18,7 +18,7 @@ type FileMdxInfo = {
         description: string
     }
     id : string
-    body: string
+    slug: string
 };
 
 const BlogPage = ({ data }: FilesMdxData) => {
@@ -26,12 +26,13 @@ const BlogPage = ({ data }: FilesMdxData) => {
     <Layout pageTitle={"My Blog Posts"}>
       {
         data.allMdx.nodes.map(node => (
-            <article key={node.id}>
-            <h2>{node.frontmatter.title}</h2>
+          <article key={node.id}>
+            <h2>
+              <Link to={'/blog/' + node.slug.toLowerCase()}>
+                {node.frontmatter.title}
+              </Link>
+            </h2>
             <p>{node.frontmatter.description}</p>
-            <MDXRenderer>
-              {node.body}
-            </MDXRenderer>
           </article>
         ))
       }
@@ -47,7 +48,7 @@ export const query = graphql `query {
           description
         }
         id
-        body
+        slug
       }
     }
   }
