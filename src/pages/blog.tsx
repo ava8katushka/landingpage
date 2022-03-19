@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Layout from '../components/layout'
-import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { Link, graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 
@@ -16,6 +16,8 @@ type FileMdxInfo = {
     frontmatter:  {
         title: string
         description: string
+        image: any
+        image_alt: string
     }
     id : string
     slug: string
@@ -27,6 +29,10 @@ const BlogPage = ({ data }: FilesMdxData) => {
       {
         data.allMdx.nodes.map(node => (
           <article key={node.id}>
+            <GatsbyImage
+                image={getImage(node.frontmatter.image)}
+                alt={node.frontmatter.image_alt}
+            />
             <h2>
               <Link to={'/blog/' + node.slug.toLowerCase()}>
                 {node.frontmatter.title}
@@ -46,6 +52,11 @@ export const query = graphql `query {
         frontmatter {
           title
           description
+          image {
+            childImageSharp {
+            gatsbyImageData (width:300)
+            }
+           }
         }
         id
         slug
