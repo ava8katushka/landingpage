@@ -1,74 +1,27 @@
+import * as React from "react"
 import "./emailCollector.module.css";
-import React from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
 
-const EmailCollector = () => {
-    return (
-        <Formik 
-        initialValues={{ email: "" }}
-        onSubmit={async values => {
-            await new Promise(resolve => setTimeout(resolve, 500));
-            alert(JSON.stringify(values, null, 2));
-          }}
-        validationSchema={Yup.object().shape({
-        email: Yup.string()
-            .email()
-            .required("Required")
-        })}
+export default function AirtableUI() {
+  return (
+    <form action="/api/airtable" method="POST">
+      <div style={{ marginBottom: `8px` }}>
+        <label style={{ display: `block`, marginBottom: `4px` }} htmlFor="name">
+          Name:
+        </label>
+        <input name="name" id="name" />
+      </div>
+      <div style={{ marginBottom: `8px` }}>
+        <label
+          style={{ display: `block`, marginBottom: `4px` }}
+          htmlFor="email"
         >
-        {props => {
-            const {
-            values,
-            touched,
-            errors,
-            dirty,
-            isSubmitting,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            handleReset
-            } = props;
-            return (
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email" style={{ display: "block" }}>
-                Email
-                </label>
-                <input
-                id="email"
-                placeholder="Enter your email"
-                type="text"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={
-                    errors.email && touched.email
-                    ? "text-input error"
-                    : "text-input"
-                }
-                />
-                {errors.email && touched.email && (
-                <div className="input-feedback">{errors.email}</div>
-                )}
-
-                <button
-                type="button"
-                className="outline"
-                onClick={handleReset}
-                disabled={!dirty || isSubmitting}
-                >
-                Reset
-                </button>
-                <button type="submit" disabled={isSubmitting}>
-                Submit
-                </button>
-            </form>
-            );
-      }}
-    </Formik>
-    )
+          Email:
+        </label>
+        <input name="email" id="email" type="email" />
+      </div>
+      <div>
+        <button>Get the book</button>
+      </div>
+    </form>
+  )
 }
-
-
-
-export default EmailCollector

@@ -1,7 +1,8 @@
 import * as React from "react"
 import Layout from '../components/layout'
 import { StaticImage } from 'gatsby-plugin-image'
-import EmailCollector from "../components/emailCollector"
+import AirtableUI from "../components/emailCollector"
+import EmailHanler from "../api/airtable"
 
 const IndexPage = () => {
   return (
@@ -14,7 +15,7 @@ const IndexPage = () => {
       <p>
         If you want to receive new chapters of the book, enter your email here:
       </p>
-      <EmailCollector></EmailCollector>
+      <AirtableUI></AirtableUI>
     </Layout>
   )
 }
