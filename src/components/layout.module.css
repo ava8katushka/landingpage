@@ -1,11 +1,12 @@
 .container {
     margin: auto;
     max-width: 500px;
-    font-family: sans-serif;
+    font-family:'Hammersmith One',serif;
   }
 
 .heading {
-color: rebeccapurple;
+color: #101218;
+font-size: 3rem;
 }
 .nav-links {
 display: flex;
