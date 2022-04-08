@@ -12,6 +12,7 @@ module.exports = {
     "gatsby-plugin-mdx",
     "gatsby-transformer-sharp",
     "gatsby-plugin-gatsby-cloud",
+    `gatsby-plugin-material-ui`,
     {
       resolve: "gatsby-source-filesystem",
       options: {

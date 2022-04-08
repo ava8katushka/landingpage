@@ -1,5 +1,6 @@
 import * as React from "react"
 import "./emailCollector.module.css";
+import Button from '@mui/material/Button';
 
 export default function AirtableUI() {
   return (
@@ -20,7 +21,8 @@ export default function AirtableUI() {
         <input name="email" id="email" type="email" />
       </div>
       <div>
-        <button>Get the book</button>
+        {/* <button>Get the book</button> */}
+        <Button type="submit" variant="contained">Get the book</Button>
       </div>
     </form>
   )
