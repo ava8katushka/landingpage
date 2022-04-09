@@ -8,7 +8,7 @@ import {
   navLinkText
 } from './layout.module.css'
 import Footer from './footer';
-import { CssBaseline } from '@mui/material';
+import { Container, CssBaseline } from '@mui/material';
 
 type LayoutEl = {
     pageTitle: string,
@@ -25,7 +25,7 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
     }
   }`);
   return (
-    <div className={container}>
+    <Container>
       <title>{pageTitle} | {data.site.siteMetadata.title}</title>
       <nav>
         <ul className={navLinks}>
@@ -48,7 +48,7 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
       </main>
       <CssBaseline />
       <Footer></Footer>
-    </div>
+    </Container>
   )
 }
 export default Layout

@@ -27,7 +27,6 @@ export default function Footer() {
         display: 'flex',
         flexDirection: 'column',
         maxHeight: '100vh',
-        width: '100%',
         backgroundColor: (theme) =>
         theme.palette.mode === 'light'
             ? theme.palette.grey[200]
