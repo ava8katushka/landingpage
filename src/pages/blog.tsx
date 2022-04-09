@@ -2,7 +2,12 @@ import * as React from 'react'
 import Layout from '../components/layout'
 import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { Link, graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ListSubheader from '@mui/material/ListSubheader';
+import IconButton from '@mui/material/IconButton';
+import { FormControlUnstyledContext } from '@mui/base';
 
 type FilesMdxData = {
     data : {
@@ -25,23 +30,32 @@ type FileMdxInfo = {
 
 const BlogPage = ({ data }: FilesMdxData) => {
   return (
-    <Layout pageTitle={"My Blog Posts"}>
+    <Layout pageTitle={"Solutions to Leetcode problems"}>
+      <ImageList variant="masonry" cols={3} sx={{ width: 900 }}>
       {
         data.allMdx.nodes.map(node => (
-          <article key={node.id}>
+          <ImageListItem key={node.id} sx={{maxWidth: '300px'}}>
+            <Link to={'/blog/' + node.slug.toLowerCase()}>
             <GatsbyImage
                 image={getImage(node.frontmatter.image)}
                 alt={node.frontmatter.image_alt}
             />
-            <h2>
-              <Link to={'/blog/' + node.slug.toLowerCase()}>
-                {node.frontmatter.title}
-              </Link>
-            </h2>
-            <p>{node.frontmatter.description}</p>
-          </article>
+            <ImageListItemBar
+            title={node.frontmatter.title}
+            subtitle={node.frontmatter.description}
+            actionIcon={
+              <IconButton
+                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                aria-label={`info about ${node.frontmatter.title}`}
+              >
+              </IconButton>
+            }
+          />
+          </Link>
+          </ImageListItem>
         ))
       }
+      </ImageList>
     </Layout>
   )
 }
@@ -54,7 +68,7 @@ export const query = graphql `query {
           description
           image {
             childImageSharp {
-            gatsbyImageData (width:300)
+            gatsbyImageData
             }
            }
         }
