@@ -7,6 +7,8 @@ import {
   navLinkItem,
   navLinkText
 } from './layout.module.css'
+import Footer from './footer';
+import { CssBaseline } from '@mui/material';
 
 type LayoutEl = {
     pageTitle: string,
@@ -44,6 +46,8 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
         <h1 className={heading}>{pageTitle}</h1>
         {children}
       </main>
+      <CssBaseline />
+      <Footer></Footer>
     </div>
   )
 }
