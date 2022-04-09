@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import {   
-  container,
   heading,
   navLinks,
   navLinkItem,
@@ -25,6 +24,7 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
     }
   }`);
   return (
+    <div>
     <Container>
       <title>{pageTitle} | {data.site.siteMetadata.title}</title>
       <nav>
@@ -47,8 +47,9 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
         {children}
       </main>
       <CssBaseline />
-      <Footer></Footer>
     </Container>
+     <Footer></Footer>
+     </div>
   )
 }
 export default Layout

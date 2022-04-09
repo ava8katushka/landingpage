@@ -10,11 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       {new Date().getFullYear()}
-      {' '}
-      <Link color="inherit" href="https://ava-coding.com/">
-        Ava Katushka
-      </Link>{' '}
-      {'.'}
+      {' by Ava Katushka. All rights reserved.'}
     </Typography>
   );
 }
