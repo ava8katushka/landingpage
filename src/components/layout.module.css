@@ -1,4 +1,7 @@
 @import "../css/typography.css";
+.all {
+    background-color: #f5f6f7;
+}
 
 nav.appBar {
     display: flex;

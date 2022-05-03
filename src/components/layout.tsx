@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import {
+  all,
   appBar,   
   navBox,
   navMain,
@@ -26,7 +27,7 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
     }
   }`);
   return (
-    <div>
+    <div className={all}>
     <nav className={appBar}>
     <StaticImage className={iconStyle}
         alt="Book logo"
