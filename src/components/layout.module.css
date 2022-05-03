@@ -1,15 +1,45 @@
-.heading {
-color: #101218;
-font-size: 3rem;
+@import "../css/typography.css";
+
+nav.appBar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    padding: 0.5rem;
+    box-shadow: 0px 0.05rem 2px #c8c9cc;
+    font-family: "HammersmithOne";
 }
+
 .nav-links {
-display: flex;
-list-style: none;
-padding-left: 0;
+    display: flex;
+    list-style: none;
+    padding-left: 0;
 }
 .nav-link-item {
 padding-right: 2rem;
 }
-.nav-link-text {
-color: black;
+.nav-box {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-item {
+    padding: 5px 20px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.nav-main {
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+.icon-style {
+    width: 2rem;
+    height: 2rem;
+    margin: 5px;
 }

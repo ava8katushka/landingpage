@@ -1,13 +1,15 @@
 import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
-import {   
-  heading,
-  navLinks,
-  navLinkItem,
-  navLinkText
+import {
+  appBar,   
+  navBox,
+  navMain,
+  navItem,
+  iconStyle,
 } from './layout.module.css'
 import Footer from './footer';
-import { Container, CssBaseline } from '@mui/material';
+import { StaticImage } from 'gatsby-plugin-image'
+import { Box,  Typography,  Container, CssBaseline } from '@mui/material';
 
 type LayoutEl = {
     pageTitle: string,
@@ -25,25 +27,20 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
   }`);
   return (
     <div>
+    <nav className={appBar}>
+    <StaticImage className={iconStyle}
+        alt="Book logo"
+        src="https://res.cloudinary.com/ava-coding-com/image/upload/v1651588574/Algorithms%20Book/bookshelf_cpwgnc.png"
+      />
+        <div className={navMain}>{pageTitle}</div>
+        <Box className={navBox}>
+            <Link className={navItem} to="/" >Home</Link>
+            <Link className={navItem} to="/about" >About</Link>
+            <Link className={navItem} to="/blog"> Blog</Link>
+        </Box>
+    </nav>
     <Container>
-      <title>{pageTitle} | {data.site.siteMetadata.title}</title>
-      <nav>
-        <ul className={navLinks}>
-          <li className={navLinkItem}>
-            <Link to="/" className={navLinkText}>Home</Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link to="/about" className={navLinkText}>About</Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link to="/blog" className={navLinkText}>
-              Blog
-            </Link>
-          </li>
-        </ul>
-      </nav>
       <main>
-        <h1 className={heading}>{pageTitle}</h1>
         {children}
       </main>
       <CssBaseline />
