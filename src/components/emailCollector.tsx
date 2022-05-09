@@ -1,26 +1,29 @@
 import * as React from "react"
-import "./emailCollector.module.css";
+import {emailBox, emailCard, emailField} from "../css/emailCollector.module.css";
 import { Box, Card, Button, Typography, CardContent, TextField, CardActions} from '@mui/material';
 
 export default function AirtableUI() {
   return (
-    <Card sx={{ maxWidth: '300px', p: '10px' }}>
-      <CardContent>
+    <div className={emailBox}>
+    <Card>
+      <CardContent className={emailCard}>
       <Typography gutterBottom variant="h5" component="div">
-          I want to get the book!
+         New chapter updates
         </Typography>
+      <p>This is the first chapter of the book. I'm writting new chapters right now. To be the first one to see them, subscribe here!</p>
       <form action="/api/airtable" method="POST">
       <Box sx={{ my: '15px'}}>
-      <TextField name="name" label="Name" variant="outlined"/>
+      <TextField className={emailField} name="name" label="Name" variant="outlined"/>
       </Box>
       <Box sx={{ my: '15px'}}>
-      <TextField name="email" label="Email" variant="outlined"/>
+      <TextField className={emailField} name="email" label="Email" variant="outlined"/>
       </Box>
       <Box sx={{ mt: '15px'}}>
-      <Button type="submit" variant="contained">Get the book</Button>
+      <Button type="submit" variant="contained">Become a beta reader</Button>
       </Box>
       </form>
     </CardContent>
     </Card>
+    </div>
   )
 }

@@ -7,10 +7,10 @@ import {
   navMain,
   navItem,
   iconStyle,
-} from './layout.module.css'
+} from '../css/layout.module.css'
 import Footer from './footer';
 import { StaticImage } from 'gatsby-plugin-image'
-import { Box,  Typography,  Container, CssBaseline } from '@mui/material';
+import { Box, Container, CssBaseline } from '@mui/material';
 
 type LayoutEl = {
     pageTitle: string,
@@ -40,12 +40,10 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
             <Link className={navItem} to="/blog"> Blog</Link>
         </Box>
     </nav>
-    <Container>
       <main>
         {children}
       </main>
       <CssBaseline />
-    </Container>
      <Footer></Footer>
      </div>
   )

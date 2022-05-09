@@ -1,0 +1,25 @@
+code {
+    background: #eee;
+    padding: .1rem;
+    font-family: 'Menlo';
+    font-size: 13px;
+    color: #ff00aa;
+  }
+
+  .email-box {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+    /* background-color: #00003d; */
+  }
+
+  .email-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+  }
+
+  .email-field {
+    width: 100%;
+  }
