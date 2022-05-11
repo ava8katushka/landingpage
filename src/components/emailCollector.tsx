@@ -1,19 +1,7 @@
 import * as React from "react"
 import {cardTitle, emailBox, emailCard, emailField, errorMessage, signUpButton} from "../css/emailCollector.module.css";
 import { Box, Card, Button, CardContent, TextField} from '@mui/material';
-
-const Airtable = require("airtable")
-
-Airtable.configure({
-  endpointUrl: "https://api.airtable.com",
-  //Your API Key from Airtable
-  apiKey: process.env.AIRTABLE_KEY,
-})
-
-// Your Table ID from Airtable
-const db = Airtable.base(process.env.AIRTABLE_DB);
-const databaseID = "tblg9oC5OXWpy23AW";
-
+import {addNameAndEmailToDB} from '../api/airtable.js';
 
 function signUp() {
   let button = document.querySelector(`.${signUpButton}`) as HTMLButtonElement;
@@ -27,29 +15,7 @@ function signUp() {
     return;
   }
 
-  try {
-    db(databaseID).create(
-      [
-        {
-          fields: {
-            Name: name.value,
-            Email: email.value,
-          },
-        },
-      ],
-      (err : any) => {
-        if (err) {
-          setErrorsIfAny(err);
-        } else {
-          showSuccessMessage();
-        }
-      }
-    );
-  } catch (err) {
-    setErrorsIfAny(err as string);
-  } finally {
-    button.disabled = false;
-  }
+  addNameAndEmailToDB(name.value, email.value, showSuccessMessage, setErrorsIfAny);
  
 }
 
