@@ -1,3 +1,5 @@
+@import "./typography.css";
+
 code {
     background: #eee;
     padding: .1rem;
@@ -22,4 +24,18 @@ code {
 
   .email-field {
     width: 100%;
+  }
+
+  .card-title {
+    font-family: "HammersmithOne";
+    font-size: 2rem;
+  }
+
+  .errorMessage {
+    color: red;
+    margin-top: 0.5rem;
+  }
+
+  .sign-up-button {
+    font-family: "HammersmithOne";
   }
