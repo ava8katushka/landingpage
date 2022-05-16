@@ -1,17 +1,14 @@
 
 const Airtable = require("airtable");
 
-Airtable.configure({
-  endpointUrl: "https://api.airtable.com",
-  //Your API Key from Airtable
-  apiKey: process.env.AIRTABLE_KEY,
-})
-
-// Your Table ID from Airtable
-const db = Airtable.base(process.env.AIRTABLE_DB);
-const databaseID = "tblg9oC5OXWpy23AW";
-
 async function addNameAndEmailToDB(name, email, successCallback, errorCallback) {
+    // Your Table ID from Airtable
+    const db = new Airtable({
+      apiKey : process.env.AIRTABLE_KEY,
+       endpointUrl : "https://api.airtable.com" 
+    }).base(process.env.AIRTABLE_DB);
+
+    const databaseID = "tblg9oC5OXWpy23AW";
     db(databaseID).create(
         [
           {
