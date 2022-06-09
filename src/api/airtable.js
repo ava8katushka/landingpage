@@ -1,31 +1,50 @@
+const Airtable = require("airtable")
 
-const Airtable = require("airtable");
+Airtable.configure({
+  endpointUrl: "https://api.airtable.com",
+  //Your API Key from Airtable
+  apiKey: process.env.AIRTABLE_KEY,
+})
 
-async function addNameAndEmailToDB(name, email, successCallback, errorCallback) {
-    // Your Table ID from Airtable
-    const db = new Airtable({
-      apiKey : process.env.AIRTABLE_KEY,
-       endpointUrl : "https://api.airtable.com" 
-    }).base(process.env.AIRTABLE_DB);
+// Your Table ID from Airtable
+const db = Airtable.base(process.env.AIRTABLE_DB)
 
-    const databaseID = "tblg9oC5OXWpy23AW";
-    db(databaseID).create(
-        [
-          {
-            fields: {
-              Name: name,
-              Email: email,
-            },
+const handler = (req, res) => {
+  try {
+    if (req.method !== "POST") {
+      return res.status(404).json({ message: "This endpoint requires a POST" })
+    }
+
+    const data = req.body;
+
+    if (!data) {
+      return res.status(500).json({ error: "There isn't any data." });
+    }
+
+    db("tblg9oC5OXWpy23AW").create(
+      [
+        {
+          fields: {
+            Name: data.name,
+            Email: data.email,
           },
-        ],
-        (err) => {
-          if (err) {
-            errorCallback(err);
-          } else {
-            successCallback();
-          }
+        },
+      ],
+      (err, _) => {
+        if (err) {
+          res.json({
+            message: "Error adding record to Airtable.",
+            error: err.message,
+          });
+        } else {
+          res.json({ message: `Successfully submitted message` });
         }
-      );
+      }
+    )
+  } catch (err) {
+    console.log(err);
+    res.json({ message: "There has been a big error.", error: err });
+  }
 }
 
-export {addNameAndEmailToDB};
+module.exports = handler
