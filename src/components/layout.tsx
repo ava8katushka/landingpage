@@ -29,10 +29,12 @@ const Layout = ({pageTitle, children}: LayoutEl) => {
   return (
     <div className={all}>
     <nav className={appBar}>
+    <a href="/">
     <StaticImage className={iconStyle}
         alt="Book logo"
         src="https://res.cloudinary.com/ava-coding-com/image/upload/v1651588574/Algorithms%20Book/bookshelf_cpwgnc.png"
       />
+      </a>
         <div className={navMain}>{pageTitle}</div>
         <Box className={navBox}>
             <Link className={navItem} to="/" >Home</Link>
