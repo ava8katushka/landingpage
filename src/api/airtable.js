@@ -37,7 +37,8 @@ const handler = (req, res) => {
             error: err.message,
           });
         } else {
-          res.json({ message: `Successfully submitted message` });
+          // Successfully submitted message
+          res.redirect('/onEmailSubmit');
         }
       }
     )
